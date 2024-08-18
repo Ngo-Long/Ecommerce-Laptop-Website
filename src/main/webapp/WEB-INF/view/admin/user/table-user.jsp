@@ -47,8 +47,9 @@
                                             <td>${userItem.email}</td>
                                             <td>${userItem.fullName}</td>
                                             <td>
-                                                <button class="btn btn-success">View</button>
-                                                <button class="btn btn-warning  mx-2">Update</button>
+                                                <a href="/admin/user/${userItem.id}" class="btn btn-success">View</a>
+                                                <a href="/admin/user/update/${userItem.id}"
+                                                    class="btn btn-warning mx-2">Update</a>
                                                 <button class="btn btn-danger">Delete</button>
                                             </td>
                                         </tr>

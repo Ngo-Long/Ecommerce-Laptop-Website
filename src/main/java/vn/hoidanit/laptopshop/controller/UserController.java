@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -27,7 +29,6 @@ public class UserController {
         System.out.println(arrUsers);
 
         model.addAttribute("eric", "test");
-        model.addAttribute("hoidanit", "from controller with model");
         return "hello";
     }
 
@@ -57,6 +58,7 @@ public class UserController {
         return "admin/user/show";
     }
 
+    // Update
     @RequestMapping("/admin/user/update/{id}")
     public String getUpdateUserPage(Model model, @PathVariable long id) {
         User currentUser = this.userService.getUserById(id);
@@ -72,8 +74,24 @@ public class UserController {
             currentUser.setEmail(data.getEmail());
             currentUser.setPhone(data.getPhone());
             currentUser.setAddress(data.getAddress());
-            this.userService.handleSaveUser(data);
+
+            this.userService.handleSaveUser(currentUser);
         }
         return "redirect:/admin/user";
     }
+
+    // Delete
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserPage(Model model, @PathVariable long id) {
+        User currentUser = this.userService.getUserById(id);
+        model.addAttribute("dataUser", currentUser);
+        return "admin/user/delete";
+    }
+
+    @PostMapping("/admin/user/delete")
+    public String postDeleteUser(Model model, @ModelAttribute("dataUser") User data) {
+        this.userService.deleteUserById(data.getId());
+        return "redirect:/admin/user";
+    }
+
 }

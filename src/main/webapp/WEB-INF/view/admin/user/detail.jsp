@@ -56,6 +56,8 @@
                                                 <li class="list-group-item">ID: ${dataUser.id}</li>
                                                 <li class="list-group-item">Full name: ${dataUser.fullName}</li>
                                                 <li class="list-group-item">Email: ${dataUser.email}</li>
+                                                <li class="list-group-item">Phone number: ${dataUser.phone}</li>
+                                                <li class="list-group-item">Address: ${dataUser.address}</li>
                                             </ul>
                                         </div>
 

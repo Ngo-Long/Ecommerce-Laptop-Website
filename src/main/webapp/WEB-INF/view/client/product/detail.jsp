@@ -75,17 +75,17 @@
                 <!-- Modal Search End -->
 
                 <!-- Single Page Header start -->
-                <div class="container-fluid page-header py-5">
+                <div class="container-fluid page-header py-5" style="margin-top: 0 !important;">
                     <h1 class="text-center text-white display-6">Chi tiết</h1>
                     <ol class="breadcrumb justify-content-center mb-0">
                         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                        <li class="breadcrumb-item active text-white">Sản phẩm</li>
+                        <li class="breadcrumb-item active text-white">Sản phẩm chi tiết</li>
                     </ol>
                 </div>
                 <!-- Single Page Header End -->
 
                 <!-- Single Product Start -->
-                <div class="container-fluid py-5 mt-5" style="padding-bottom: 0 !important;">
+                <div class="container-fluid py-5" style="padding-bottom: 0 !important;">
                     <div class="container py-5" style="padding-bottom: 0 !important;">
                         <div class="row g-4">
                             <div class="col-lg-8 col-xl-9">

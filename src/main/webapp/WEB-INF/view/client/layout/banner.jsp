@@ -2,7 +2,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!-- Hero Start -->
         <div class="container-fluid mb-5 hero-header"
-            style="padding-top: 0; padding-bottom: 2rem; margin-top: 100px !important">
+            style="padding-top: 0; padding-bottom: 2rem; margin-top: 0px !important">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-md-12 col-lg-7">

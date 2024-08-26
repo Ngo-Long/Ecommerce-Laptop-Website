@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
             <meta name="author" content="Hỏi Dân IT" />
-            <title>Dashboard</title>
+            <title>Laptopshop - Product List ${dataProduct.id}</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -31,7 +31,7 @@
                             </ol>
                         </div>
 
-                        <div class="mt-5">
+                        <div class="container mt-5">
                             <div class="row">
                                 <div class="col-12 mx-auto">
                                     <div class="d-flex justify-content-between">
@@ -51,24 +51,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- <c:forEach var="user" items="${users1}">
+                                            <c:forEach var="dataProduct" items="${dataProducts}">
                                                 <tr>
-                                                    <th>${user.id}</th>
-                                                    <td>${user.email}</td>
-                                                    <td>${user.fullName}</td>
-                                                    <td>${user.role.name}</td>
+                                                    <th>${dataProduct.id}</th>
+                                                    <th>${dataProduct.name}</th>
+                                                    <td>${dataProduct.price}</td>
+                                                    <td>${dataProduct.factory}</td>
                                                     <td>
-                                                        <a href="/admin/user/${user.id}"
+                                                        <a href="/admin/product/${dataProduct.id}"
                                                             class="btn btn-success">View</a>
-                                                        <a href="/admin/user/update/${user.id}"
+                                                        <a href="/admin/product/update/${dataProduct.id}"
                                                             class="btn btn-warning  mx-2">Update</a>
-                                                        <a href="/admin/user/delete/${user.id}"
+                                                        <a href="/admin/product/delete/${dataProduct.id}"
                                                             class="btn btn-danger">Delete</a>
                                                     </td>
                                                 </tr>
 
-                                            </c:forEach> -->
-
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

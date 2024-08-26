@@ -22,22 +22,24 @@ public class HomePageController {
     }
 
     @GetMapping("/")
-    public String getHomePage() {
+    public String getHomePage(Model model) {
+        List<Product> dataProducts = this.productService.getAllProducts();
+        model.addAttribute("dataProducts", dataProducts);
         return "client/home/show";
     }
 
     @RequestMapping("/product")
     public String getProductPage(Model model) {
-        List<Product> dataProducts = this.productService.getAllProduct();
+        List<Product> dataProducts = this.productService.getAllProducts();
         model.addAttribute("dataProducts", dataProducts);
-        return "client/product/show";
+        return "client/product/detail";
     }
 
     @RequestMapping("/product/{id}")
     public String getProductDetailPage(Model model, @PathVariable long id) {
-        // Product dataProduct = this.productService.getProductById(id);
-        // model.addAttribute("dataProduct", dataProduct);
-        return "client/product/show";
+        Product dataProduct = this.productService.getProductById(id);
+        model.addAttribute("dataProduct", dataProduct);
+        return "client/product/detail";
     }
 
 }

@@ -35,19 +35,10 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @RequestMapping("/")
-    public String getHomePage(Model model) {
-        List<User> arrUsers = this.userService.getAllUsersByEmail("ngolong.hh@gmail.com");
-        System.out.println(arrUsers);
-
-        model.addAttribute("eric", "test");
-        return "hello";
-    }
-
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
-        List<User> users = this.userService.getAllUsers();
-        model.addAttribute("dataUsers", users);
+        List<User> dataUsers = this.userService.getAllUsers();
+        model.addAttribute("dataUsers", dataUsers);
         return "admin/user/show";
     }
 
@@ -59,22 +50,27 @@ public class UserController {
 
     @PostMapping(value = "/admin/user/create") // POST
     public String createUserPage(Model model,
-            @ModelAttribute("newUser") @Valid User data,
-            BindingResult bindingResult,
+            @ModelAttribute("newUser") @Valid User dataUser,
+            BindingResult newUserBindingResult,
             @RequestParam("avatarNameFile") MultipartFile file) {
 
-        List<FieldError> errors = bindingResult.getFieldErrors();
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            System.out.println(error.getObjectName());
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
+
+        // validate
+        if (newUserBindingResult.hasErrors()) {
+            return "/admin/user/create";
         }
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-        String hashPassword = this.passwordEncoder.encode(data.getPassword());
+        String hashPassword = this.passwordEncoder.encode(dataUser.getPassword());
 
-        data.setAvatar(avatar);
-        data.setPassword(hashPassword);
-        data.setRole(this.userService.getRoldByName(data.getRole().getName()));
-        this.userService.handleSaveUser(data);
+        dataUser.setAvatar(avatar);
+        dataUser.setPassword(hashPassword);
+        dataUser.setRole(this.userService.getRoldByName(dataUser.getRole().getName()));
+        this.userService.handleSaveUser(dataUser);
 
         return "redirect:/admin/user";
     }

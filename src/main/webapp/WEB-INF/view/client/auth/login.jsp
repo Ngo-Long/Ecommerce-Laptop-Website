@@ -29,7 +29,12 @@
                                             <div class="card-body">
                                                 <form method="post" action="/login">
                                                     <c:if test="${param.error != null}">
-                                                        <div class="my-2" style="color: red;">Invalid email or password.
+                                                        <div class="my-2" style="color: red;">Tài khoản không tồn tại
+                                                        </div>
+                                                    </c:if>
+
+                                                    <c:if test="${param.logout != null}">
+                                                        <div class="my-2" style="color: green;">Đăng xuất thành công
                                                         </div>
                                                     </c:if>
 

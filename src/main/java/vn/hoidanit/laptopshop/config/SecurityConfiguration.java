@@ -1,5 +1,7 @@
 package vn.hoidanit.laptopshop.config;
 
+import jakarta.servlet.DispatcherType;
+
 import vn.hoidanit.laptopshop.service.UserService;
 import vn.hoidanit.laptopshop.service.CustomUserDetailsService;
 
@@ -7,9 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import jakarta.servlet.DispatcherType;
-
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -44,19 +44,27 @@ public class SecurityConfiguration {
     }
 
     @Bean
+    public AuthenticationSuccessHandler customSuccessHandle() {
+        return new CustomSuccessHandle();
+    }
+
+    @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE)
                         .permitAll()
-                        .requestMatchers("/", "/login", "/client/**", "/css/**", "/js/**", "/img/**")
+                        .requestMatchers("/", "/login", "/product/**", "/client/**", "/css/**", "/js/**", "/img/**")
                         .permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
 
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/login?error")
-                        .permitAll());
+                        .successHandler(customSuccessHandle())
+                        .permitAll())
+                .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"));
 
         return http.build();
     }

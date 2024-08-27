@@ -12,8 +12,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 import jakarta.validation.constraints.Size;
-import vn.hoidanit.laptopshop.service.validator.StrongPassword;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotEmpty;
 

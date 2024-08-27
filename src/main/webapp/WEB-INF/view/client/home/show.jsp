@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
             <html lang="en">
 
             <head>
@@ -117,7 +117,8 @@
                                                                     </a>
                                                                 </h4>
 
-                                                                <p style="font-size: 13px;">${dataProduct.shortDesc}</p>
+                                                                <p style="font-size: 13px;">${dataProduct.shortDesc}
+                                                                </p>
 
                                                                 <div
                                                                     class="d-flex justify-content-between flex-lg-wrap">
@@ -125,11 +126,20 @@
                                                                         class="text-dark fw-bold mb-3">
                                                                         <fmt:formatNumber type="number"
                                                                             value=" ${dataProduct.price}" /> đ
+
                                                                     </p>
-                                                                    <a href="#"
-                                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                        Add to cart</a>
+                                                                    <form
+                                                                        action="/add-product-to-cart/${dataProduct.id}"
+                                                                        method="post">
+                                                                        <input type="hidden"
+                                                                            name="${_csrf.parameterName}"
+                                                                            value="${_csrf.token}" />
+                                                                        <button
+                                                                            class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
+                                                                                class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                            Add to cart</button>
+                                                                    </form>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -155,11 +165,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Grapes</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -179,11 +191,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Raspberries</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -212,11 +226,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Oranges</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -236,11 +252,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Apple</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -269,11 +287,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Grapes</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -293,11 +313,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Apricots</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -326,11 +348,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Banana</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -350,11 +374,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Raspberries</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>
@@ -374,11 +400,13 @@
                                                         <div
                                                             class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                             <h4>Oranges</h4>
-                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                                                                elit
                                                                 sed
                                                                 do eiusmod te incididunt</p>
                                                             <div class="d-flex justify-content-between flex-lg-wrap">
-                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                                <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg
+                                                                </p>
                                                                 <a href="#"
                                                                     class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                                                         class="fa fa-shopping-bag me-2 text-primary"></i>

@@ -87,11 +87,4 @@ public class HomePageController {
         return "client/product/detail";
     }
 
-    @RequestMapping("/product/{id}")
-    public String getProductDetailPage(Model model, @PathVariable long id) {
-        Product dataProduct = this.productService.getProductById(id);
-        model.addAttribute("dataProduct", dataProduct);
-        return "client/product/detail";
-    }
-
 }

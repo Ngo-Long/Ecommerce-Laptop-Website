@@ -3,15 +3,14 @@ package vn.hoidanit.laptopshop.controller.client;
 import java.util.List;
 
 import org.springframework.ui.Model;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
@@ -24,8 +23,8 @@ import vn.hoidanit.laptopshop.service.ProductService;
 @Controller
 public class HomePageController {
 
-    private final ProductService productService;
     private final UserService userService;
+    private final ProductService productService;
     private final PasswordEncoder passwordEncoder;
 
     public HomePageController(ProductService productService,

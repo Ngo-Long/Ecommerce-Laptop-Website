@@ -47,6 +47,10 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
+    public Cart fetchByUser(User user) {
+        return this.cartRepository.findByUser(user);
+    }
+
     public void handleAddProductToCart(String email, long productId, HttpSession session) {
         User dataUser = this.userService.getUserByEmail(email);
         if (dataUser == null) {

@@ -35,6 +35,21 @@ public class HomePageController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    // Load product
+    @GetMapping("/")
+    public String getHomePage(Model model) {
+        List<Product> dataProducts = this.productService.getAllProducts();
+        model.addAttribute("dataProducts", dataProducts);
+        return "client/home/show";
+    }
+
+    @RequestMapping("/product")
+    public String getProductPage(Model model) {
+        List<Product> dataProducts = this.productService.getAllProducts();
+        model.addAttribute("dataProducts", dataProducts);
+        return "client/product/detail";
+    }
+
     // Register and login
     @GetMapping("/register")
     public String getRegisterPage(Model model) {
@@ -70,21 +85,6 @@ public class HomePageController {
     @GetMapping("/access-deny")
     public String getDenyPage(Model model) {
         return "client/auth/access-deny";
-    }
-
-    // Load product
-    @GetMapping("/")
-    public String getHomePage(Model model) {
-        List<Product> dataProducts = this.productService.getAllProducts();
-        model.addAttribute("dataProducts", dataProducts);
-        return "client/home/show";
-    }
-
-    @RequestMapping("/product")
-    public String getProductPage(Model model) {
-        List<Product> dataProducts = this.productService.getAllProducts();
-        model.addAttribute("dataProducts", dataProducts);
-        return "client/product/detail";
     }
 
 }

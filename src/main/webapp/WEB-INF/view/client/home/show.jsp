@@ -130,7 +130,7 @@
                                                                     </p>
                                                                     <form
                                                                         action="/add-product-to-cart/${dataProduct.id}"
-                                                                        method="post">
+                                                                        method="post" style="margin: 0 auto;">
                                                                         <input type="hidden"
                                                                             name="${_csrf.parameterName}"
                                                                             value="${_csrf.token}" />

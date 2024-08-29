@@ -2,6 +2,19 @@ package vn.hoidanit.laptopshop.controller.client;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+
+import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.domain.Order;
+import vn.hoidanit.laptopshop.domain.Product;
+import vn.hoidanit.laptopshop.domain.dto.RegisterDTO;
+
+import vn.hoidanit.laptopshop.service.UserService;
+import vn.hoidanit.laptopshop.service.OrderService;
+import vn.hoidanit.laptopshop.service.ProductService;
+
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -9,28 +22,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jakarta.validation.Valid;
-import vn.hoidanit.laptopshop.domain.User;
-import vn.hoidanit.laptopshop.domain.Product;
-import vn.hoidanit.laptopshop.domain.dto.RegisterDTO;
-import vn.hoidanit.laptopshop.service.UserService;
-import vn.hoidanit.laptopshop.service.ProductService;
 
 @Controller
 public class HomePageController {
 
     private final UserService userService;
+    private final OrderService orderService;
     private final ProductService productService;
     private final PasswordEncoder passwordEncoder;
 
     public HomePageController(ProductService productService,
+            OrderService orderService,
             UserService userService,
             PasswordEncoder passwordEncoder) {
         this.productService = productService;
+        this.orderService = orderService;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -85,6 +93,19 @@ public class HomePageController {
     @GetMapping("/access-deny")
     public String getDenyPage(Model model) {
         return "client/auth/access-deny";
+    }
+
+    @GetMapping("/order-history")
+    public String getOrderHistoryPage(Model model, HttpServletRequest request) {
+        User currentUser = new User();
+        HttpSession session = request.getSession(false);
+        long id = (long) session.getAttribute("id");
+        currentUser.setId(id);
+
+        List<Order> orders = this.orderService.fetchOrderByUser(currentUser);
+        model.addAttribute("orders", orders);
+
+        return "client/cart/order-history";
     }
 
 }

@@ -105,17 +105,17 @@ public class UserController {
     }
 
     // Delete
+    @PostMapping("/admin/user/delete")
+    public String postDeleteUser(Model model, @ModelAttribute("dataUser") User data) {
+        this.userService.deleteUserById(data.getId());
+        return "redirect:/admin/user";
+    }
+
     @GetMapping("/admin/user/delete/{id}")
     public String getDeleteUserPage(Model model, @PathVariable long id) {
         User currentUser = this.userService.getUserById(id);
         model.addAttribute("dataUser", currentUser);
         return "admin/user/delete";
-    }
-
-    @PostMapping("/admin/user/delete")
-    public String postDeleteUser(Model model, @ModelAttribute("dataUser") User data) {
-        this.userService.deleteUserById(data.getId());
-        return "redirect:/admin/user";
     }
 
 }

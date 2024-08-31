@@ -36,6 +36,7 @@
                                             </div>
 
                                             <hr />
+
                                             <table class=" table table-bordered table-hover">
                                                 <thead>
                                                     <tr>
@@ -46,6 +47,7 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
+
                                                 <tbody>
                                                     <c:forEach var="order" items="${orders}">
                                                         <tr>
@@ -65,18 +67,15 @@
                                                                     class="btn btn-danger">Delete</a>
                                                             </td>
                                                         </tr>
-
                                                     </c:forEach>
-
                                                 </tbody>
                                             </table>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </main>
+
                         <jsp:include page="../layout/footer.jsp" />
                     </div>
                 </div>

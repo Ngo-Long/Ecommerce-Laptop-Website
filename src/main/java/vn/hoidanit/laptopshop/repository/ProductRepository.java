@@ -1,6 +1,5 @@
 package vn.hoidanit.laptopshop.repository;
 
-import java.util.List;
 import vn.hoidanit.laptopshop.domain.Product;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +12,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findById(long id);
 
-    List<Product> findAll();
 }

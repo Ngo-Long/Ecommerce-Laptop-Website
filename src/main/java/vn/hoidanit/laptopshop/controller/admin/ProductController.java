@@ -8,8 +8,10 @@ import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.ProductService;
 
 import org.springframework.ui.Model;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +33,11 @@ public class ProductController {
     }
 
     @GetMapping("/admin/product")
-    public String getProductPage(Model model) {
-        List<Product> dataProducts = this.productService.getAllProducts();
+    public String getProductPage(Model model, @RequestParam("page") int page) {
+        Pageable pageable = PageRequest.of(page - 1, 4);
+        Page<Product> pageProducts = this.productService.getAllProducts(pageable);
+
+        List<Product> dataProducts = pageProducts.getContent();
         model.addAttribute("dataProducts", dataProducts);
         return "admin/product/show";
     }

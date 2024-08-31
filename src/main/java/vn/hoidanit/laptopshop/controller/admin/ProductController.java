@@ -1,6 +1,8 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
+
 import jakarta.validation.Valid;
 
 import vn.hoidanit.laptopshop.domain.Product;
@@ -33,8 +35,15 @@ public class ProductController {
     }
 
     @GetMapping("/admin/product")
-    public String getProductPage(Model model, @RequestParam("page") int page) {
-        Pageable pageable = PageRequest.of(page - 1, 2);
+    public String getProductPage(Model model, @RequestParam("page") Optional<String> pageOptional) {
+        int page = 1;
+        try {
+            if (pageOptional.isPresent())
+                page = Integer.parseInt(pageOptional.get());
+        } catch (Exception e) {
+        }
+
+        Pageable pageable = PageRequest.of(page - 1, 5);
         Page<Product> pageProducts = this.productService.getAllProducts(pageable);
         List<Product> dataProducts = pageProducts.getContent();
 

@@ -1,8 +1,10 @@
 package vn.hoidanit.laptopshop.controller.admin;
 
 import java.util.List;
-import jakarta.validation.Valid;
+import java.util.Optional;
 
+import jakarta.validation.Valid;
+import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.UserService;
 import vn.hoidanit.laptopshop.service.UploadService;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Controller
@@ -36,9 +41,22 @@ public class UserController {
     }
 
     @RequestMapping("/admin/user")
-    public String getUserPage(Model model) {
-        List<User> dataUsers = this.userService.getAllUsers();
+    public String getUserPage(Model model, @RequestParam("page") Optional<String> pageOptional) {
+        int page = 1;
+        try {
+            if (pageOptional.isPresent())
+                page = Integer.parseInt(pageOptional.get());
+        } catch (Exception e) {
+        }
+
+        Pageable pageable = PageRequest.of(page - 1, 5);
+        Page<User> pageUsers = this.userService.getAllUsers(pageable);
+        List<User> dataUsers = pageUsers.getContent();
+
         model.addAttribute("dataUsers", dataUsers);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", pageUsers.getTotalPages());
+
         return "admin/user/show";
     }
 

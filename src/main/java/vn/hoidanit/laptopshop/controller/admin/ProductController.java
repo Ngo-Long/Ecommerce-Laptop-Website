@@ -2,7 +2,7 @@ package vn.hoidanit.laptopshop.controller.admin;
 
 import java.util.List;
 import java.util.Optional;
-
+import java.util.ArrayList;
 import jakarta.validation.Valid;
 
 import vn.hoidanit.laptopshop.domain.Product;
@@ -11,8 +11,9 @@ import vn.hoidanit.laptopshop.service.ProductService;
 
 import org.springframework.ui.Model;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,8 +45,11 @@ public class ProductController {
         }
 
         Pageable pageable = PageRequest.of(page - 1, 5);
-        Page<Product> pageProducts = this.productService.getAllProducts(pageable);
-        List<Product> dataProducts = pageProducts.getContent();
+        Page<Product> pageProducts = this.productService.fetchProducts(pageable);
+
+        List<Product> dataProducts = pageProducts.getContent().size() > 0
+                ? pageProducts.getContent()
+                : new ArrayList<Product>();
 
         model.addAttribute("dataProducts", dataProducts);
         model.addAttribute("currentPage", page);

@@ -50,7 +50,7 @@ public class HomePageController {
     @GetMapping("/")
     public String getHomePage(Model model) {
         Pageable pageable = PageRequest.of(0, 10);
-        Page<Product> pageProducts = this.productService.getAllProducts(pageable);
+        Page<Product> pageProducts = this.productService.fetchProducts(pageable);
         List<Product> dataProducts = pageProducts.getContent();
 
         model.addAttribute("dataProducts", dataProducts);
@@ -60,7 +60,7 @@ public class HomePageController {
     @RequestMapping("/product")
     public String getProductPage(Model model) {
         Pageable pageable = PageRequest.of(0, 10);
-        Page<Product> pageProducts = this.productService.getAllProducts(pageable);
+        Page<Product> pageProducts = this.productService.fetchProducts(pageable);
 
         List<Product> dataProducts = pageProducts.getContent();
         model.addAttribute("dataProducts", dataProducts);

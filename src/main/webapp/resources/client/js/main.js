@@ -212,7 +212,7 @@
             change = 0;
 
             //update
-            totalPriceElement?.each(function (index, element) {
+            totalPriceElement.each(function (index, element) {
                 //update text
                 $(totalPriceElement[index]).text(formatCurrency(newTotal.toFixed(2)) + " đ");
 
@@ -293,12 +293,13 @@
     // Parse the URL parameters
     const params = new URLSearchParams(window.location.search);
 
+	
     // Set checkboxes for 'factory'
     if (params.has('factory')) {
-        const factories = params.get('factory').split(',');
+        const factories = params.get('factory').split(',')
         factories.forEach(factory => {
-            $(`#factoryFilter .form-check-input[value="${factory}"]`).prop('checked', true);
-        });
+            $(`#factoryFilter .form-check-input[value="${factory}"]`).prop('checked', true)
+        })
     }
 
     // Set checkboxes for 'target'
@@ -322,6 +323,7 @@
         const sort = params.get('sort');
         $(`input[type="radio"][name="radio-sort"][value="${sort}"]`).prop('checked', true);
     }
+	
 
 
     //////////////////////////
@@ -389,6 +391,7 @@
         const token = $("meta[name='_csrf']").attr("content");
         const header = $("meta[name='_csrf_header']").attr("content");
         const quantity = $("#cartDetails0\\.quantity").val();
+	
         $.ajax({
             url: `${window.location.origin}/api/add-product-to-cart`,
             beforeSend: function (xhr) {
@@ -427,6 +430,7 @@
         }
         return true;
     }
+	
 
 })(jQuery);
 

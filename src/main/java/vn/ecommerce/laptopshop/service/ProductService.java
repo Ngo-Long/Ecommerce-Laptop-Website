@@ -81,42 +81,6 @@ public class ProductService {
         return this.productRepository.findAll(combinedSpec, page);
     }
 
-    // public Page<Product> fetchProductsWithSpec(Pageable page, double min) {
-    // return this.productRepository.findAll(ProductSpecs.minPrice(min), page);
-    // }
-
-    // public Page<Product> fetchProductsWithSpec(Pageable page, double max) {
-    // return this.productRepository.findAll(ProductSpecs.maxPrice(max), page);
-    // }
-
-    // public Page<Product> fetchProductsWithSpec(Pageable page, String factory) {
-    // return this.productRepository.findAll(ProductSpecs.matchFactory(factory),
-    // page);
-    // }
-
-    // public Page<Product> fetchProductsWithSpec(Pageable page, List<String>
-    // factory) {
-    // return this.productRepository.findAll(ProductSpecs.matchListFactory(factory),
-    // page);
-    // }
-
-    // public Page<Product> fetchProductsWithSpec(Pageable page, String price) {
-    // // eg: price 10-toi-15-trieu
-    // if (price.equals("10-toi-15-trieu")) {
-    // double min = 10000000;
-    // double max = 15000000;
-    // return this.productRepository.findAll(ProductSpecs.matchPrice(min, max),
-    // page);
-
-    // } else if (price.equals("15-toi-30-trieu")) {
-    // double min = 15000000;
-    // double max = 30000000;
-    // return this.productRepository.findAll(ProductSpecs.matchPrice(min, max),
-    // page);
-    // } else
-    // return this.productRepository.findAll(page);
-    // }
-
     public Specification<Product> buildPriceSpecification(List<String> price) {
         Specification<Product> combinedSpec = Specification.where(null);
         for (String p : price) {
